@@ -620,3 +620,37 @@ public void homePage() throws Exception {
 - 使用Spring的RestTemplete向应用程序发HTTP请求
 
 其他功能看书好了，测试看不下去了了了
+
+## 深入Actuator
+
+spring boot 的 Actuator提供了许多生产级特性，比如监控和度量Spring Boot 应用程序
+
+### 揭秘Actuator端点
+
+Actuator提供了13个Web端点，通过它们可以了解应用程序的内部运行状况。
+
+| HTTP方法 | 路径              | 描述                                       |
+| ------ | --------------- | ---------------------------------------- |
+| GET    | /autoconfig     | 提供一份自动配置报告，记录哪些自动配置通过了，哪些没通过             |
+| GET    | /configprops    | 描述配置属性（包括默认值）如何注入Bean                    |
+| GET    | /beans          | 描述应用上下文里全部的Bean，以及它们的联系                  |
+| GET    | /dump           | 获取线程活动快照                                 |
+| GET    | /env            | 获取全部环境属性                                 |
+| GET    | /env/{name}     | 根据名称获取特定的环境属性值                           |
+| GET    | /health         | 报告应用程序的健康指标，这些值由HealthIndicator的实现类提供    |
+| GET    | /info           | 获取应用程序的定制信息，这些信息由info打头的属性提供             |
+| GET    | /mappings       | 描述全部的URI路径，以及他们的控制器（包括Actuator端点）的映射关系   |
+| GET    | /metrics        | 报告各种应用程序度量信息，比如内存用量和HTTP请求计数             |
+| GET    | /metrics/{name} | 报告指定名称的应用程序度量值                           |
+| POST   | /shutdown       | 关闭应用程序，要求endpoints.shutdoen.enabled设置为true |
+| GET    | /trace          | 提供基本的HTTP请求跟踪信息（时间戳、HTTP头等）              |
+
+需要添加的依赖：
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
